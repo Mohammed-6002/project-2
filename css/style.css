@@ -1,165 +1,55 @@
-/* Algemene body styling */
 body {
-  font-family: 'Arial', sans-serif;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background-color: #f5f5fa;
   margin: 0;
   padding: 0;
-  background-color: #f4f4f9;
-  color: #333;
-  text-align: center;
 }
 
-/* Navigatiebalk styling */
-nav {
-  background-color: #2c3e50;
-  padding: 15px 0;
-}
-
-nav a {
-  color: white;
-  font-size: 1.1rem;
-  text-decoration: none;
-  margin: 0 20px;
-  transition: color 0.3s ease;
-}
-
-nav a:hover {
-  color: #ecf0f1;
-}
-
-/* Hoofdtitel */
 h1 {
-  margin-top: 20px;
-  color: #2c3e50;
+  margin: 20px 0;
+  font-size: 24px;
 }
 
-/* Instellingen en startknop */
-.settings, .game {
-  margin: 20px auto;
-  max-width: 350px;
-}
-
-input {
-  padding: 10px;
-  margin: 10px 0;
-  width: 100%;
-  font-size: 1.1rem;
-  border: 2px solid #3498db;
-  border-radius: 5px;
-  box-sizing: border-box;
-}
-
-button {
-  padding: 10px 20px;
-  background-color: #3498db;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 1.1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-button:hover {
-  background-color: #2980b9;
-}
-
-button:disabled {
-  background-color: #bdc3c7;
-  cursor: not-allowed;
-}
-
-/* Het bord - gebruik van CSS Grid */
 .board {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 10px;
-  margin: 20px auto;
-  max-width: 330px;
-  max-height: 330px;
+  gap: 10px;
+  width: 300px;
+  margin: 50px auto;
 }
 
-/* Cellen in het bord */
 .cell {
-  width: 100%;
-  height: 100%;
-  font-size: 3rem;
+  width: 100px;
+  height: 100px;
+  background: #eaeaea;
+  font-size: 36px;
+  font-weight: bold;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #ecf0f1;
-  border: 2px solid #3498db;
-  border-radius: 5px;
+  border: 1px solid #ccc;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-/* Hover effect voor de cellen */
-.cell:hover {
-  background-color: #d6eaf8;
-  transform: scale(1.05);
+.cell.X {
+  color: blue;
 }
 
-/* Cellen die al bezet zijn */
-.cell.taken {
-  background-color: #bdc3c7;
-  cursor: not-allowed;
+.cell.O {
+  color: red;
 }
 
-/* Verbergen van elementen */
+.winner-message {
+  margin-top: 20px; 
+}
+
 .hidden {
   display: none;
 }
 
-/* Scorebord en berichten */
-.scoreboard {
-  display: flex;
-  justify-content: space-around;
-  margin-bottom: 20px;
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #2c3e50;
+.reset-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
 }
-
-.score {
-  color: #2980b9;
-}
-
-.message {
-  margin: 20px 0;
-  font-weight: bold;
-  font-size: 1.5rem;
-}
-
-.message.win {
-  color: #2ecc71; /* Groene kleur voor winnaar */
-}
-
-.message.tie {
-  color: #e67e22; /* Oranje kleur voor gelijkspel */
-}
-
-/* Media query voor mobiele apparaten */
-@media (max-width: 600px) {
-  .settings, .game {
-    max-width: 90%;
-  }
-
-  .board {
-    max-width: 80%;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 8px;
-  }
-
-  .cell {
-    font-size: 2rem;
-    height: 90px;
-    width: 90px;
-  }
-
-  input, button {
-    font-size: 1rem;
-  }
-}
-
-
-  
