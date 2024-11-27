@@ -9,6 +9,7 @@ body {
 h1 {
   margin: 20px 0;
   font-size: 24px;
+  color: #333;
 }
 
 .board {
@@ -30,6 +31,7 @@ h1 {
   justify-content: center;
   border: 1px solid #ccc;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .cell.X {
@@ -40,8 +42,12 @@ h1 {
   color: red;
 }
 
+.cell:hover {
+  background-color: #d4d4d4;
+}
+
 .winner-message {
-  margin-top: 20px; 
+  margin-top: 20px;
 }
 
 .hidden {
@@ -51,5 +57,12 @@ h1 {
 .reset-button {
   padding: 10px 20px;
   font-size: 16px;
+  margin-top: 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
 }
+
+
