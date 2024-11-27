@@ -19,7 +19,6 @@ const winningCombinations = [
   [0, 4, 8],
   [2, 4, 6],
 ];
-
 function checkWinner() {
   return winningCombinations.some(combination => {
     const [a, b, c] = combination;
