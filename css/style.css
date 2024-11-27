@@ -1,13 +1,25 @@
+:root {
+  --body-background-color: black;
+  --cell-background-color: #eaeaea;
+  --cell-border: #ccc;
+  --white-color: white;
+  --cell-X-color: blue;
+  --cell-O-color: red;
+  --reset-button-background-color: #4CAF50;
+  --reset-button-color: white;
+}
+
 body {
   font-family: Arial, sans-serif;
   text-align: center;
-  background-color: #f5f5fa;
+  background-color: var(--body-background-color);
   margin: 0;
   padding: 0;
 }
 
 h1 {
   margin: 20px 0;
+  color: var(--white-color);
 }
 
 .board {
@@ -21,22 +33,22 @@ h1 {
 .cell {
   width: 100px;
   height: 100px;
-  background: #eaeaea;
+  background: var(--cell-background-color);
   font-size: 36px;
   font-weight: bold;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #ccc;
+  border: 1px solid var(--cell-border);
   cursor: pointer;
 }
 
 .cell.X {
-  color: blue;
+  color: var(--cell-X-color);
 }
 
 .cell.O {
-  color: red;
+  color: var(--cell-O-color);
 }
 
 .winner-message {
@@ -49,8 +61,8 @@ h1 {
 
 .reset-button {
   padding: 10px 20px;
-  background-color: #4CAF50;
-  color: white;
+  background-color: var(--reset-button-background-color);
+  color: var(--reset-button-color);
   border: none;
   cursor: pointer;
 }
@@ -58,6 +70,7 @@ h1 {
 .scoreboard, p {
   font-size: 18px;
   margin-top: 10px;
+  color: var(--white-color);
 }
 
 
