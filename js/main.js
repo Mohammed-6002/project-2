@@ -32,7 +32,6 @@ function handleClick(event) {
   const cell = event.target;
   const index = cell.dataset.index;
 
-  // Controleer of de cel al is ingevuld en of er al een winnaar is
   if (!boardState[index] && winnerMessage.classList.contains("hidden")) {
     boardState[index] = currentPlayer;
     cell.textContent = currentPlayer;
