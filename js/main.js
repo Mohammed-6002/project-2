@@ -2,8 +2,8 @@ const cells = document.querySelectorAll(".cell");
 const winnerMessage = document.querySelector(".winner-message");
 const winnerText = document.querySelector(".winner-text");
 const resetButton = document.querySelector(".reset-button");
-const scoreX = document.getElementById("scoreX");
-const scoreO = document.getElementById("scoreO");
+const scoreX = document.querySelector("#scoreX");
+const scoreO = document.querySelector("#scoreO");
 
 let currentPlayer = "X";
 let boardState = Array(9).fill(null);
