@@ -1,7 +1,7 @@
 const cells = document.querySelectorAll(".cell");
 const winnerMessage = document.querySelector(".winner-message");
 const winnerText = document.querySelector(".winner-text");
-const resetButton = document.querySelector(".reset-button");
+const nextRoundButton = document.querySelector(".next-round-button");
 const scoreX = document.querySelector("#scoreX");
 const scoreO = document.querySelector("#scoreO");
 
@@ -19,6 +19,7 @@ const winningCombinations = [
   [0, 4, 8],
   [2, 4, 6],
 ];
+
 function checkWinner() {
   return winningCombinations.some(combination => {
     const [a, b, c] = combination;
@@ -32,8 +33,8 @@ function isDraw() {
 
 function handleClick(event) {
   const index = event.target.dataset.index;
-  
-  if (boardState[index] === null && winnerMessage.classList.contains("hidden")) {
+
+  if (boardState[index] === null && winnerMessage.classList.contains("hidden") && score.X < 5 && score.O < 5) {
     boardState[index] = currentPlayer;
     event.target.textContent = currentPlayer;
     event.target.classList.add(currentPlayer);
@@ -41,11 +42,24 @@ function handleClick(event) {
     if (checkWinner()) {
       score[currentPlayer]++;
       updateScoreboard();
-      winnerText.textContent = `Speler ${currentPlayer} wint!`;
+      winnerText.textContent = `Speler ${currentPlayer} wint deze ronde!`;
       winnerMessage.classList.remove("hidden");
+
+      if (score[currentPlayer] === 5) {
+        winnerText.textContent = `Speler ${currentPlayer} heeft 5 punten behaald en gewonnen!`;
+        nextRoundButton.textContent = "Play again";
+        nextRoundButton.classList.remove("hidden");
+        cells.forEach(cell => cell.removeEventListener("click", handleClick));
+      } else {
+        nextRoundButton.textContent = "Next Round";
+        nextRoundButton.classList.remove("hidden");
+      }
     } else if (isDraw()) {
       winnerText.textContent = "Het is een gelijkspel!";
       winnerMessage.classList.remove("hidden");
+      nextRoundButton.textContent = "Next Round";
+      nextRoundButton.classList.remove("hidden");
+      cells.forEach(cell => cell.removeEventListener("click", handleClick));
     } else {
       currentPlayer = currentPlayer === "X" ? "O" : "X";
     }
@@ -55,13 +69,9 @@ function handleClick(event) {
 function updateScoreboard() {
   scoreX.textContent = score.X;
   scoreO.textContent = score.O;
-
-  if (score.X === 5 || score.O === 5) {
-    winnerText.textContent = `Speler ${currentPlayer} heeft 5 punten behaald en gewonnen!`;
-  }
 }
 
-function resetGame() {
+function startNextRound() {
   boardState.fill(null);
   cells.forEach(cell => {
     cell.textContent = "";
@@ -69,10 +79,40 @@ function resetGame() {
   });
   currentPlayer = "X";
   winnerMessage.classList.add("hidden");
+  nextRoundButton.classList.add("hidden");
+  cells.forEach(cell => cell.addEventListener("click", handleClick));
 }
 
+function resetGame() {
+  score.X = 0;
+  score.O = 0;
+  updateScoreboard();
+  boardState.fill(null);
+  cells.forEach(cell => {
+    cell.textContent = "";
+    cell.classList.remove("X", "O");
+  });
+  currentPlayer = "X";
+  winnerMessage.classList.add("hidden");
+  nextRoundButton.classList.add("hidden");
+  cells.forEach(cell => cell.addEventListener("click", handleClick));
+}
+
+nextRoundButton.classList.add("hidden");
+
 cells.forEach(cell => cell.addEventListener("click", handleClick));
-resetButton.addEventListener("click", resetGame);
+
+nextRoundButton.addEventListener("click", function() {
+  if (score.X === 5 || score.O === 5) {
+    resetGame();
+  } else {
+    startNextRound();
+  }
+});
+
+
+
+
 
 
 

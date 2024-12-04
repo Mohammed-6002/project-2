@@ -5,8 +5,8 @@
   --white-color: white;
   --cell-X-color: blue;
   --cell-O-color: red;
-  --reset-button-background-color: #4CAF50;
-  --reset-button-color: white;
+  --next-round-button-background-color: #4CAF50;
+  --next-round-button-color: white;
 }
 
 body {
@@ -59,10 +59,10 @@ h1 {
   display: none;
 }
 
-.reset-button {
+.next-round-button {
   padding: 10px 20px;
-  background-color: var(--reset-button-background-color);
-  color: var(--reset-button-color);
+  background-color: var(--next-round-button-background-color);
+  color: var(--next-round-button-color);
   border: none;
   cursor: pointer;
 }
