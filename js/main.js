@@ -4,10 +4,12 @@ const winnerText = document.querySelector(".winner-text");
 const nextRoundButton = document.querySelector(".next-round-button");
 const scoreX = document.querySelector("#scoreX");
 const scoreO = document.querySelector("#scoreO");
+const gamemodeButtons = document.querySelectorAll(".gamemode-button");
 
 let currentPlayer = "X";
 let boardState = Array(9).fill(null);
 let score = { X: 0, O: 0 };
+let gamemode = ""; // "player" of "computer"
 
 const winningCombinations = [
   [0, 1, 2],
@@ -62,7 +64,23 @@ function handleClick(event) {
       cells.forEach(cell => cell.removeEventListener("click", handleClick));
     } else {
       currentPlayer = currentPlayer === "X" ? "O" : "X";
+
+      if (gamemode === "computer" && currentPlayer === "O") {
+        setTimeout(computerMove, 500);
+      }
     }
+  }
+}
+
+function computerMove() {
+  const availableCells = boardState
+    .map((value, index) => (value === null ? index : null))
+    .filter(index => index !== null);
+  const randomIndex = availableCells[Math.floor(Math.random() * availableCells.length)];
+
+  if (randomIndex !== undefined) {
+    const cell = cells[randomIndex];
+    cell.click();
   }
 }
 
@@ -98,9 +116,19 @@ function resetGame() {
   cells.forEach(cell => cell.addEventListener("click", handleClick));
 }
 
+function selectGamemode(mode) {
+  gamemode = mode;
+  document.querySelector(".gamemode-selection").classList.add("hidden");
+  document.querySelector(".board").classList.remove("hidden");
+  document.querySelector(".scoreboard").classList.remove("hidden");
+  cells.forEach(cell => cell.addEventListener("click", handleClick));
+}
+
 nextRoundButton.classList.add("hidden");
 
-cells.forEach(cell => cell.addEventListener("click", handleClick));
+gamemodeButtons.forEach(button => {
+  button.addEventListener("click", () => selectGamemode(button.dataset.mode));
+});
 
 nextRoundButton.addEventListener("click", function() {
   if (score.X === 5 || score.O === 5) {
@@ -109,6 +137,7 @@ nextRoundButton.addEventListener("click", function() {
     startNextRound();
   }
 });
+
 
 
 

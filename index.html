@@ -8,7 +8,15 @@
 </head>
 <body>
   <h1>Boter Kaas en Eieren</h1>
-  <div class="board">
+
+  <!-- Gamemode Selectie -->
+  <div class="gamemode-selection">
+    <h2>Kies een spelmodus:</h2>
+    <button class="gamemode-button" data-mode="player">Speler vs Speler</button>
+    <button class="gamemode-button" data-mode="computer">Speler vs Computer</button>
+  </div>
+
+  <div class="board hidden">
     <div class="cell" data-index="0"></div>
     <div class="cell" data-index="1"></div>
     <div class="cell" data-index="2"></div>
@@ -19,19 +27,16 @@
     <div class="cell" data-index="7"></div>
     <div class="cell" data-index="8"></div>
   </div>
-  <div class="scoreboard">
-    <p> Speler X: <span id="scoreX">0</span> - Speler O: <span id="scoreO">0</span></p>
+
+  <div class="scoreboard hidden">
+    <p>Speler X: <span id="scoreX">0</span> - Speler O: <span id="scoreO">0</span></p>
   </div>
+
   <div class="winner-message hidden">
     <p class="winner-text"></p>
     <button class="next-round-button hidden">Next Round</button>
   </div>
+
   <script src="js/main.js"></script>
 </body>
 </html>
-
-
-
-
-
-
