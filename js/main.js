@@ -6,10 +6,19 @@ const scoreX = document.querySelector("#scoreX");
 const scoreO = document.querySelector("#scoreO");
 const gamemodeButtons = document.querySelectorAll(".gamemode-button");
 
+const playerXNameInput = document.querySelector("#playerX");
+const playerONameInput = document.querySelector("#playerO");
+const startGameButton = document.querySelector(".start-game-button");
+const playerNamesSection = document.querySelector(".player-names");
+
 let currentPlayer = "X";
 let boardState = Array(9).fill(null);
 let score = { X: 0, O: 0 };
 let gamemode = "";
+let playerNames = {
+  X: "Speler X",
+  O: "Speler O"
+};
 
 const winningCombinations = [
   [0, 1, 2],
@@ -19,7 +28,7 @@ const winningCombinations = [
   [1, 4, 7],
   [2, 5, 8],
   [0, 4, 8],
-  [2, 4, 6],
+  [2, 4, 6]
 ];
 
 function checkWinner() {
@@ -35,7 +44,6 @@ function isDraw() {
 
 function handleClick(event) {
   const index = event.target.dataset.index;
-
   if (boardState[index] === null && winnerMessage.classList.contains("hidden") && score.X < 5 && score.O < 5) {
     boardState[index] = currentPlayer;
     event.target.textContent = currentPlayer;
@@ -44,11 +52,11 @@ function handleClick(event) {
     if (checkWinner()) {
       score[currentPlayer]++;
       updateScoreboard();
-      winnerText.textContent = `Speler ${currentPlayer} wint deze ronde!`;
+      winnerText.textContent = `${playerNames[currentPlayer]} wint deze ronde!`;
       winnerMessage.classList.remove("hidden");
 
       if (score[currentPlayer] === 5) {
-        winnerText.textContent = `Speler ${currentPlayer} heeft 5 punten behaald en gewonnen!`;
+        winnerText.textContent = `${playerNames[currentPlayer]} heeft 5 punten behaald en gewonnen!`;
         nextRoundButton.textContent = "Play again";
         nextRoundButton.classList.remove("hidden");
         cells.forEach(cell => cell.removeEventListener("click", handleClick));
@@ -87,6 +95,8 @@ function computerMove() {
 function updateScoreboard() {
   scoreX.textContent = score.X;
   scoreO.textContent = score.O;
+  document.querySelector("#scoreboard-playerX").textContent = `${playerNames.X}: ${score.X}`;
+  document.querySelector("#scoreboard-playerO").textContent = `${playerNames.O}: ${score.O}`;
 }
 
 function startNextRound() {
@@ -118,17 +128,44 @@ function resetGame() {
 
 function selectGamemode(mode) {
   gamemode = mode;
+  if (mode === "player") {
+    document.querySelector(".gamemode-selection").classList.add("hidden");
+    playerNamesSection.classList.remove("hidden");
+  } else {
+    startGameForComputer();
+  }
+}
+
+function startGameForComputer() {
+  gamemode = "computer";
+  startGame();
+}
+
+function startGame() {
+  playerNames.X = playerXNameInput.value.trim() || "Speler X";
+  playerNames.O = playerONameInput.value.trim() || "Speler O";
+
   document.querySelector(".gamemode-selection").classList.add("hidden");
+  playerNamesSection.classList.add("hidden");
   document.querySelector(".board").classList.remove("hidden");
   document.querySelector(".scoreboard").classList.remove("hidden");
+
+  updateScoreboard();
+
   cells.forEach(cell => cell.addEventListener("click", handleClick));
 }
 
 nextRoundButton.classList.add("hidden");
 
 gamemodeButtons.forEach(button => {
-  button.addEventListener("click", () => selectGamemode(button.dataset.mode));
+  button.addEventListener("click", () => {
+    if (!gamemode) {
+      selectGamemode(button.dataset.mode);
+    }
+  });
 });
+
+startGameButton.addEventListener("click", startGame);
 
 nextRoundButton.addEventListener("click", function() {
   if (score.X === 5 || score.O === 5) {
@@ -137,6 +174,12 @@ nextRoundButton.addEventListener("click", function() {
     startNextRound();
   }
 });
+
+
+
+
+
+
 
 
 
