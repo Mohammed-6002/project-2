@@ -9,7 +9,7 @@ const gamemodeButtons = document.querySelectorAll(".gamemode-button");
 let currentPlayer = "X";
 let boardState = Array(9).fill(null);
 let score = { X: 0, O: 0 };
-let gamemode = ""; // "player" of "computer"
+let gamemode = ""; 
 
 const winningCombinations = [
   [0, 1, 2],
