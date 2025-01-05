@@ -51,7 +51,7 @@ h1 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
-  width: 300px;
+  width: 320px;
   margin: 50px auto;
 }
 
@@ -97,6 +97,25 @@ h1 {
 .winner-message {
   margin-top: 20px;
 }
+
+input {
+  padding: 10px 20px;
+  font-size: 14px;
+  margin: 10px;
+  margin-left: -100px;
+  background-color: var(--cell-background-color);
+  border: 1px solid var(--cell-border);
+  color: black;
+  border-radius: 5px;
+  width: 200px;
+  text-align: center;
+  display: inline-block;
+}
+
+.start-game-button {
+  font-size: 15px;
+}
+
 
 
 

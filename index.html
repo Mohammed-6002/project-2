@@ -15,6 +15,16 @@
     <button class="gamemode-button" data-mode="computer">Speler vs Computer</button>
   </div>
 
+  <div class="player-names hidden">
+    <label for="playerX">Naam Speler X:</label>
+    <input type="text" id="playerX" placeholder="Voer naam in Speler X"><br><br>
+    
+    <label for="playerO">Naam Speler O:</label>
+    <input type="text" id="playerO" placeholder="Voer naam in Speler O"><br><br>
+    
+    <button class="start-game-button">Start Game</button>
+  </div>
+
   <div class="board hidden">
     <div class="cell" data-index="0"></div>
     <div class="cell" data-index="1"></div>
@@ -28,7 +38,8 @@
   </div>
 
   <div class="scoreboard hidden">
-    <p>Speler X: <span id="scoreX">0</span> - Speler O: <span id="scoreO">0</span></p>
+    <p id="scoreboard-playerX">Speler X: <span id="scoreX">0</span></p>
+    <p id="scoreboard-playerO">Speler O: <span id="scoreO">0</span></p>
   </div>
 
   <div class="winner-message hidden">
@@ -39,3 +50,5 @@
   <script src="js/main.js"></script>
 </body>
 </html>
+
+
